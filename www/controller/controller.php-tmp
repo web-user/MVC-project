@@ -59,10 +59,29 @@ switch ($view) {
 
 		break;
 
-	case ('news'):
-		// отдельная новость
-		$news_id   = abs((int) $_GET['news_id']);
-		$news_text = get_news_text($news_id);
+	case ('archive'):
+		// архив новостей
+
+		// options navigation
+		$perpage = 2;// кол-во товаров на страницу
+		if (isset($_GET['page'])) {
+			$page                 = (int) $_GET['page'];
+			if ($page < 1) {$page = 1;
+			}
+		} else {
+			$page = 1;
+		}
+		$count_rows                      = count_news();// общее кол-во новостей
+		$pages_count                     = ceil($count_rows/$perpage);//  кол-во страниц
+		if (!$pages_count) {$pages_count = 1;
+		}
+		// минимум 1 страница
+		if ($page > $pages_count) {$page = $pages_count;
+		}
+		// если запрошеная страница больше максимума
+		$start_pos = ($page-1)*$perpage;// начальная позиция для запроса
+
+		$all_news = get_all_news($start_pos, $perpage);
 
 		break;
 

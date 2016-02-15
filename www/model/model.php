@@ -2,12 +2,9 @@
 defined('MVCproject') or die('Access denied');
 // model
 
-
-
-
 /*Archive News*/
 function get_all_news($start_pos,$perpage){
-	$query = "SELECT `news_id`, `title`, `anons`, `date` FROM news ORDER BY news_id DESC LIMIT $start_pos, $perpage";
+	$query = "SELECT `id`, `name`, `anons`, `date` FROM feedback ORDER BY id DESC LIMIT $start_pos, $perpage";
 	$res = mysql_query($query);
 
 	$all_news = array();
@@ -20,7 +17,7 @@ function get_all_news($start_pos,$perpage){
 
 /*quantity News*/
 function count_news(){
-	$query = "SELECT COUNT(news_id) FROM news";
+	$query = "SELECT COUNT(id) FROM feedback";
 	$res = mysql_query($query);
 
 	$count_news = mysql_fetch_row($res);
@@ -30,13 +27,25 @@ function count_news(){
 
 function feedback(){
 		$kapcha = $_POST['kapcha'];
+		$namefeedback = clear($_POST['namefeedback']);
+		$emailfeedback = clear($_POST['emailfeedback']);
+		$text = clear($_POST['text']);
+
+		if( empty($namefeedback) ) {
+			$error .="<li>Enter Name</li>";
+		}
+		if( empty($emailfeedback) ) {
+			$error .="<li>Enter Email</li>";
+		}
+
 		if($_POST['kapcha'] != $_SESSION['rand_code']) {
 			$error .="<li>Не правельно введен проверочный код !</li>";
-			echo "<div class='error'>Не заполнены обязательные поля:<br> <ul>$error</ul></div> ";
 		}else{
 			echo "OK";
 		}
-		echo "string";
+		if( !empty($error) ){
+			echo "<div class='error'>Не заполнены обязательные поля:<br> <ul>$error</ul></div> ";
+		}
 }
 
 // regestration
