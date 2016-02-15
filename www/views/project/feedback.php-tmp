@@ -16,7 +16,7 @@
 			<div class="col-m-d-12">
 				<div class="post-image">
 					<div class="opisan-dost">
-						<form id="registration" method="post">
+						<form id="myform" method="post">
 
 							<div class="col-md-12 dost-site">
 								<div class="col-md-4">

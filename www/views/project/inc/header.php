@@ -17,6 +17,7 @@
 
 
 
+
 </head>
 <body>
 <div id="wrapper">
@@ -51,6 +52,7 @@
                         <li class=""><a href="/">Главная</a></li>
                         <li><a href="?view=weather">Weather</a></li>
                         <li><a href="?view=feedback">Feedback</a></li>
+                        <li><a href="?view=archive">Archive Feedback</a></li>
                     </ul>
                 </div>
             </div>

@@ -33,7 +33,26 @@
 
 <!--Javascripts-->
 <script type="text/javascript" src="<?php echo TEMPLATE; ?>js/script.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+<script>
+// just for the demos, avoids form submit
+jQuery.validator.setDefaults({
+  debug: true,
+  success: "valid"
+});
 
+$( "#myform" ).validate({
+  rules: {
+    field: {
+      required: true,
+      email: true
+    }
+  }
+});
+
+</script>
 
 
 </body>

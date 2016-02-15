@@ -133,11 +133,17 @@ $(function () {                                      // Когда страни�
       	var feedback = $("#feedback").val();
       	var kapcha = $("#kapcha").val();
       	var namefeedback = $("#namefeedback").val();
+      	var emailfeedback = $("#emailfeedback").val();
+      	var text = $("#text").val();
+      	var pattern = /^[a-z0-9_-]+@[a-z0-9-]+\.[a-z]{2,6}$/i;
+      	     if(namefeedback.length == 0){
+            		$(".reg-sss").html('<font size="3" color="red">Not all fields are filled. try again</font>');
+            	}else{
 
           		$.ajax({
           		   url: './',
           		   type: 'POST',
-          		   data: {feedback: feedback, kapcha: kapcha},
+          		   data: {feedback: feedback, kapcha: kapcha, namefeedback: namefeedback, text: text},
           		   success: function(res){
           		        if(res){
           		           $(".reg-sss").html(res);
@@ -154,6 +160,7 @@ $(function () {                                      // Когда страни�
           		   }
           		});
   
+  			}
 
 
       });
